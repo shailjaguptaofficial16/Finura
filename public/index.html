@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finura - Smart investments for a financially secure future</title>
+    <meta name="description" content="Finura provides digital banking, automated savings, and smart investment tools to secure your financial future with zero fees.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="Finura home">
+                <img src="logo.png" alt="Finura logo">
+            </a>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="#features">Feature</a></li>
+                    <li><a href="#interactive">About</a></li>
+                    <li><a href="blog.html">Resources</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <!-- Populated dynamically by main.js -->
+                <a href="auth.html?mode=login" class="btn-text">Login</a>
+                <a href="auth.html?mode=register" class="btn btn-primary" style="padding: 8px 20px;">Create Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container grid-2">
+        <div class="hero-text">
+            <span class="badge badge-primary">Investing</span>
+            <h1 style="margin-top: 16px;">Smart investments for a financially secure future.</h1>
+            <p>A comprehensive range of first-class investment, wealth and credit solutions for private and institutional clients.</p>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="auth.html?mode=register" class="btn btn-primary">Get Started</a>
+                <a href="#features" class="arrow-circle" aria-label="Learn More">↗</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Professional woman in bright modern office -->
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80" alt="Sarah Jenkins, Advisor at Finura">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container text-center section-header">
+            <span class="badge badge-primary">Bunch of Feature</span>
+            <h2>Manage Finances Simpler than Ever</h2>
+            <p>We combine digital asset managers, traditional savings structures, and automated routines to simplify money growth.</p>
+        </div>
+        
+        <div class="container grid-3">
+            <div class="card feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Private Banking</h3>
+                <p>Comprehensive investment, wealth and credit solutions for private and institutional clients built on localized security parameters.</p>
+            </div>
+            <div class="card feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Top-up E-Wallet Easily</h3>
+                <p>Add balances immediately from linked credit or bank accounts without fees, holding limits, or delayed verification queues.</p>
+            </div>
+            <div class="card feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>High-Yield Savings</h3>
+                <p>Access interest rates exceeding traditional accounts, automatically compounding interest deposits every single day.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section (Calculators & Visualizers) -->
+    <section id="interactive" class="interactive-section">
+        <div class="container grid-2">
+            <!-- Left: Transfer Fee Slider -->
+            <div class="transfer-fee-box">
+                <span class="badge badge-primary">Transfer Fees</span>
+                <h3 style="margin-top: 12px; margin-bottom: 8px; font-size: 1.6rem;">Say No More to Transfer Fees</h3>
+                <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 24px;">Traditional banks charge up to 3% for monthly external routing. Calculate your potential annual savings with Finura.</p>
+                
+                <div class="slider-group">
+                    <label for="transfer-amount">
+                        <span>Monthly Transfer Volume</span>
+                        <span id="amount-label">$5,000</span>
+                    </label>
+                    <input type="range" id="transfer-amount" min="500" max="50000" step="500" value="5000">
+                </div>
+                
+                <div class="slider-group">
+                    <label for="transfer-frequency">
+                        <span>Transfers Per Month</span>
+                        <span id="freq-label">12</span>
+                    </label>
+                    <input type="range" id="transfer-frequency" min="1" max="50" step="1" value="12">
+                </div>
+                
+                <div class="fee-saving-display">
+                    <span>Your Estimated Annual Savings</span>
+                    <div class="fee-saving-val" id="savings-display">$3,600</div>
+                </div>
+            </div>
+
+            <!-- Right: Interactive Cashflow Card -->
+            <div class="cashflow-card">
+                <div class="cashflow-header">
+                    <div>
+                        <h3 style="font-size: 1.4rem;">Easy to Monitor Cashflow</h3>
+                        <p style="color: var(--color-text-muted); font-size: 0.85rem;">Interactive balance simulator</p>
+                    </div>
+                    <span class="badge badge-orange" id="cashflow-metric">+56.5%</span>
+                </div>
+                
+                <div class="cashflow-stats">
+                    <div class="stat-box income">
+                        <span>Monthly Income</span>
+                        <h4 id="income-val">$2,703.45</h4>
+                    </div>
+                    <div class="stat-box expense">
+                        <span>Monthly Expense</span>
+                        <h4 id="expense-val">$1,174.50</h4>
+                    </div>
+                </div>
+
+                <div class="chart-placeholder" id="cashflow-chart">
+                    <!-- Bars populated by JS -->
+                    <div class="chart-bar" style="height: 40%;" data-month="Jan"></div>
+                    <div class="chart-bar" style="height: 55%;" data-month="Feb"></div>
+                    <div class="chart-bar" style="height: 48%;" data-month="Mar"></div>
+                    <div class="chart-bar" style="height: 65%;" data-month="Apr"></div>
+                    <div class="chart-bar active" style="height: 80%;" data-month="May"></div>
+                    <div class="chart-bar" style="height: 72%;" data-month="Jun"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Visualizers Section -->
+    <section class="container grid-2" style="padding-bottom: 100px;">
+        <div class="card">
+            <span class="badge badge-primary">Satisfying Stats</span>
+            <h3 style="margin-top: 12px; margin-bottom: 12px; font-size: 1.4rem;">Spending Categories</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 24px;">Hover to view dynamic allocation ratios for typical users.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 14px;" id="spending-list">
+                <div class="spending-item" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; cursor: pointer;">
+                    <span>🏠 Housing & Rent</span>
+                    <strong style="color: var(--color-primary);">32%</strong>
+                </div>
+                <div class="spending-item" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; cursor: pointer;">
+                    <span>🥗 Food & Groceries</span>
+                    <strong style="color: var(--color-primary);">18%</strong>
+                </div>
+                <div class="spending-item" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; cursor: pointer;">
+                    <span>📈 Investments</span>
+                    <strong style="color: var(--color-primary);">25%</strong>
+                </div>
+                <div class="spending-item" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; cursor: pointer;">
+                    <span>🎭 Entertainment</span>
+                    <strong style="color: var(--color-primary);">15%</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <span class="badge badge-orange">For Advanced Users</span>
+            <h3 style="margin-top: 12px; margin-bottom: 12px; font-size: 1.4rem;">Build Advanced Portfolios</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 24px;">Define target index allocations, write simple auto-rebalancing rules, and execute cross-broker transactions instantly.</p>
+            <div style="background-color: var(--color-bg-light); border-radius: var(--border-radius-sm); padding: 20px; border-left: 4px solid var(--color-orange);">
+                <p style="font-style: italic; font-size: 0.9rem; color: var(--color-text-dark);">"Finura's custom execution triggers let me automate index purchasing across 3 accounts concurrently. A complete game-changer."</p>
+                <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px;">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="Advanced User" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div>
+                        <h5 style="font-size: 0.85rem; margin: 0;">Taras Dengin</h5>
+                        <span style="font-size: 0.75rem; color: var(--color-text-muted);">Crypto & Index Analyst</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dark Promotion / Quick Invest Block -->
+    <section class="section-dark">
+        <div class="container">
+            <div class="investing-promo">
+                <div class="promo-text">
+                    <span class="badge badge-primary">Invest Feature</span>
+                    <h2 style="margin-top: 16px;">Help You Start Investing Easily</h2>
+                    <p>Finura helps you achieve your dreams through investing in mutual funds with a sense of security, comfort, and advanced yield protections. Try it now!</p>
+                    <a href="auth.html?mode=register" class="btn btn-primary">Try It Now</a>
+                </div>
+                <div class="promo-graphic">
+                    <h4 style="margin-bottom: 16px; font-size: 1.1rem; text-align: center;">Investment Simulator</h4>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; color: var(--color-text-dim);">
+                            <span>Starting capital</span>
+                            <span id="sim-capital-lbl">$10,000</span>
+                        </label>
+                        <input type="range" id="sim-capital" min="1000" max="100000" step="1000" value="10000" style="width: 100%; accent-color: var(--color-primary);">
+                    </div>
+                    <div class="quick-stats-grid">
+                        <div class="quick-stat-card">
+                            <span>Monthly Yield (Est)</span>
+                            <h4 id="sim-yield">$70.00</h4>
+                        </div>
+                        <div class="quick-stat-card">
+                            <span>Balance after 5yrs</span>
+                            <h4 id="sim-total" style="color: var(--color-primary); font-weight: 800;">$15,036</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ accordion section -->
+    <section class="faq-section">
+        <div class="container text-center section-header">
+            <span class="badge badge-primary">FAQ</span>
+            <h2>What's people ask</h2>
+            <p>Get instant answers about our accounts, security, cards, and investment structures.</p>
+        </div>
+        
+        <div class="container faq-container" id="faq-accordion">
+            <!-- Dynamically populated from db.json by JS, fallback in place -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is Square Savings?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Square Savings is a high-yield interest savings account designed to make managing business finances easier. It is integrated with Square payments, which enables you to automatically set money aside with every sale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to action banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Save automatically with every Finura sale</h2>
+            <p>Join thousands of users who have streamlined their investment flows and eliminated routing fees entirely.</p>
+            <a href="auth.html?mode=register" class="btn btn-secondary">Create Account</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="color: var(--color-text-light); margin-bottom: 20px;">
+                    Finura <span class="logo-dot"></span>
+                </a>
+                <p style="color: var(--color-text-dim); font-size: 0.9rem; margin-top: 12px; max-width: 240px;">
+                    Securing finance solutions and wealth products for modern professionals.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Atlas</a></li>
+                    <li><a href="#">Billing</a></li>
+                    <li><a href="#">Capital</a></li>
+                    <li><a href="#">Checkout</a></li>
+                    <li><a href="#">Climate</a></li>
+                    <li><a href="#">Connect</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Use Cases</h4>
+                <ul>
+                    <li><a href="#">E-Commerce</a></li>
+                    <li><a href="#">SaaS</a></li>
+                    <li><a href="#">Marketplaces</a></li>
+                    <li><a href="#">Embedded Finance</a></li>
+                    <li><a href="#">Platforms</a></li>
+                    <li><a href="#">Creator Economy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Support Centre</a></li>
+                    <li><a href="#">Support Plans</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Customer Stories</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">Privacy & Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom">
+            <p>© 2026 Finura Inc. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="GitHub">GitHub</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global API scripts first, then Main, then Landing Specific -->
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/landing.js"></script>
+</body>
+</html>

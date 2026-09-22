@@ -1,0 +1,21 @@
+# Local environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.production.example
+
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+
+# Local logs and operating-system files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Local/demo database
+db.json
+# Local/demo archives
+*.zip

@@ -1,0 +1,14 @@
+const mongoose = require('mongoose');
+const User = require('../models/User');
+const notificationService = require('../services/notificationService');
+const { sendSuccess } = require('../middleware/errorMiddleware');
+const userId = (req) => req.user._id || req.user.id;
+const create = async (req, res, next) => { try { const notification = await notificationService.createNotification({ ...req.body, user: userId(req) }); return sendSuccess(res, notification, 201); } catch (error) { return next(error); } };
+const list = async (req, res, next) => { try { const data = await notificationService.getUserNotifications(userId(req), { unreadOnly: req.query.unreadOnly === 'true' }); return sendSuccess(res, data); } catch (error) { return next(error); } };
+const unreadCount = async (req, res, next) => { try { return sendSuccess(res, { count: await notificationService.getUnreadCount(userId(req)) }); } catch (error) { return next(error); } };
+const read = async (req, res, next) => { try { if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).json({ success: false, message: 'Invalid notification ID' }); const item = await notificationService.markAsRead(userId(req), req.params.id); if (!item) return res.status(404).json({ success: false, message: 'Notification not found' }); return sendSuccess(res, item); } catch (error) { return next(error); } };
+const readAll = async (req, res, next) => { try { await notificationService.markAllAsRead(userId(req)); return sendSuccess(res, { updated: true }); } catch (error) { return next(error); } };
+const remove = async (req, res, next) => { try { const item = await notificationService.deleteNotification(userId(req), req.params.id); if (!item) return res.status(404).json({ success: false, message: 'Notification not found' }); return sendSuccess(res, { id: item._id }); } catch (error) { return next(error); } };
+const getPreferences = async (req, res, next) => { try { const user = await User.findById(userId(req)).select('notificationPreferences'); return sendSuccess(res, user.notificationPreferences); } catch (error) { return next(error); } };
+const updatePreferences = async (req, res, next) => { try { const allowed = ['inApp', 'email', 'types']; const input = Object.fromEntries(Object.entries(req.body || {}).filter(([key]) => allowed.includes(key))); if (input.types) input.types.security = true; const user = await User.findByIdAndUpdate(userId(req), { $set: Object.fromEntries(Object.entries(input).map(([key, value]) => [`notificationPreferences.${key}`, value])) }, { new: true, runValidators: true }).select('notificationPreferences'); return sendSuccess(res, user.notificationPreferences); } catch (error) { return next(error); } };
+module.exports = { create, list, unreadCount, read, readAll, remove, getPreferences, updatePreferences };

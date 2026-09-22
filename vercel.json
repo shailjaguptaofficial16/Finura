@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!api/|assets/|_next/|.*\\.).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

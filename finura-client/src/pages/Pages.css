@@ -1,0 +1,132 @@
+/* Pages.css - Premium Styling for About and Features */
+
+.landing-container {
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.break-words {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.page-container {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 75vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.badge-green {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.badge-blue {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+
+/* Headings & Text - Clean & Professional */
+.page-title {
+  font-size: 2.5rem; /* Size bohot kam kiya */
+  color: #1e293b; /* Ekdum black ki jagah soft dark slate kiya */
+  margin: 0 0 16px 0;
+  font-weight: 700; /* Boldness kam ki */
+  letter-spacing: -0.5px;
+  overflow-wrap: break-word;
+}
+
+.page-subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Features Grid - Forced 3 Columns */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Mobile responsive ke liye */
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards ko properly Center-Align karna */
+.feature-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  z-index: 10;
+  
+  /* Alignment Fixes - Center perfectly */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center; 
+}
+
+.feature-card h3 {
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+}/* Sleek Mission Box for About Page */
+.mission-box {
+  background: #0f172a; 
+  color: #ffffff;
+  padding: 50px 40px;
+  border-radius: 24px;
+  margin-top: 40px;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-box h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+}
+
+.mission-text {
+  color: #cbd5e1;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 400;
+}

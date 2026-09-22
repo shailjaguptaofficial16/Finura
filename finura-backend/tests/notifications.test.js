@@ -1,0 +1,13 @@
+const request = require('supertest');
+const mongoose = require('mongoose');
+const app = require('../server');
+const User = require('../models/User');
+const Notification = require('../models/Notification');
+
+describe('Notifications API', () => {
+  let token; let otherToken; let user; let otherUser;
+  beforeAll(async () => { const first = await request(app).post('/api/auth/signup').send({ name: 'Notification User', email: `qa_notification_${Date.now()}@finura.com`, password: 'Password123!' }); const second = await request(app).post('/api/auth/signup').send({ name: 'Other Notification', email: `qa_notification_other_${Date.now()}@finura.com`, password: 'Password123!' }); token = first.body.token; otherToken = second.body.token; user = first.body.user; otherUser = second.body.user; });
+  afterAll(async () => { await Notification.deleteMany({ user: { $in: [user?._id, otherUser?._id] } }); await User.deleteMany({ _id: { $in: [user?._id, otherUser?._id] } }); await mongoose.connection.close(); });
+  it('creates, deduplicates, lists, reads, counts, and deletes owned notifications', async () => { const headers = { Authorization: `Bearer ${token}` }; const payload = { type: 'EMI_DUE', title: 'EMI due', message: 'Your EMI is due', priority: 'high', dedupeKey: 'emi:loan:2026-09-11' }; const first = await request(app).post('/api/notifications').set(headers).send(payload); expect(first.status).toBe(201); const duplicate = await request(app).post('/api/notifications').set(headers).send(payload); expect(duplicate.status).toBe(201); expect(duplicate.body.data._id).toBe(first.body.data._id); const list = await request(app).get('/api/notifications').set(headers); expect(list.body.data).toHaveLength(1); const count = await request(app).get('/api/notifications/unread-count').set(headers); expect(count.body.data.count).toBe(1); const read = await request(app).patch(`/api/notifications/${first.body.data._id}/read`).set(headers); expect(read.body.data.isRead).toBe(true); expect((await request(app).get('/api/notifications/unread-count').set(headers)).body.data.count).toBe(0); expect((await request(app).delete(`/api/notifications/${first.body.data._id}`).set(headers)).status).toBe(200); });
+  it('blocks unauthenticated and cross-user notification access', async () => { expect((await request(app).get('/api/notifications')).status).toBe(401); const created = await request(app).post('/api/notifications').set('Authorization', `Bearer ${token}`).send({ type: 'SYSTEM', title: 'Private', message: 'Private', dedupeKey: 'private-1' }); const foreign = await request(app).patch(`/api/notifications/${created.body.data._id}/read`).set('Authorization', `Bearer ${otherToken}`); expect(foreign.status).toBe(404); });
+});

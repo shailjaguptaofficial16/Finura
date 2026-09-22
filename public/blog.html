@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finura Newsroom & Resources</title>
+    <meta name="description" content="Read developer guidelines, design frameworks, products news, and market insights at the Finura Media Hub.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="Finura home">
+                <img src="logo.png" alt="Finura logo">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Feature</a></li>
+                    <li><a href="index.html#interactive">About</a></li>
+                    <li><a href="blog.html" class="active">Resources</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <!-- Dynamic Auth state -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Container -->
+    <section class="blog-section container">
+        
+        <!-- Featured Article Spotlight Area -->
+        <div id="featured-article-spotlight">
+            <!-- Rendered by blog.js -->
+            <div class="featured-article" style="opacity: 0.6; padding: 100px; text-align: center;">
+                Loading featured content...
+            </div>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="blog-filters-bar">
+            <ul class="blog-filters" id="category-filters">
+                <li><button class="blog-filter-btn active" data-category="All">View All</button></li>
+                <li><button class="blog-filter-btn" data-category="Design">Design</button></li>
+                <li><button class="blog-filter-btn" data-category="Product">Product</button></li>
+                <li><button class="blog-filter-btn" data-category="Development">Development</button></li>
+                <li><button class="blog-filter-btn" data-category="Customer Support">Customer Support</button></li>
+                <li><button class="blog-filter-btn" data-category="Interviews">Interviews</button></li>
+            </ul>
+            
+            <div class="blog-search-box">
+                <input type="text" id="blog-search-input" placeholder="Search resources...">
+            </div>
+        </div>
+
+        <!-- Blog Articles Grid -->
+        <div class="grid-3" id="blog-grid" style="min-height: 200px;">
+            <!-- Rendered dynamically by blog.js -->
+        </div>
+
+    </section>
+
+    <!-- Stay Connected Banner -->
+    <section style="background-color: var(--color-bg-white); padding: 80px 0; border-top: 1px solid var(--color-border);">
+        <div class="container grid-2" style="align-items: center;">
+            <div>
+                <span class="badge badge-primary">Newsletter</span>
+                <h3 style="font-size: 2rem; margin-top: 12px; margin-bottom: 12px;">Stay Connected</h3>
+                <p style="color: var(--color-text-muted);">Get notified about terminal updates, new compliance directives, and investment options directly in your inbox.</p>
+            </div>
+            
+            <form id="subscribe-form" style="display: flex; gap: 12px;">
+                <input type="email" placeholder="Enter your email" required style="flex-grow: 1; padding: 14px 20px; border-radius: var(--border-radius-full); border: 1px solid var(--color-border); outline: none;">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="color: var(--color-text-light); margin-bottom: 20px;">
+                    Finura <span class="logo-dot"></span>
+                </a>
+                <p style="color: var(--color-text-dim); font-size: 0.9rem; margin-top: 12px;">
+                    Securing finance solutions for modern professionals.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Atlas</a></li>
+                    <li><a href="#">Billing</a></li>
+                    <li><a href="#">Capital</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Use Cases</h4>
+                <ul>
+                    <li><a href="#">E-Commerce</a></li>
+                    <li><a href="#">SaaS</a></li>
+                    <li><a href="#">Marketplaces</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#faq-accordion">FAQ</a></li>
+                    <li><a href="#">Guides</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 Finura Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>

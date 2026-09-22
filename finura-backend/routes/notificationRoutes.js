@@ -1,0 +1,14 @@
+const express = require('express');
+const { protect } = require('../middleware/authMiddleware');
+const controller = require('../controllers/notificationController');
+const router = express.Router();
+router.use(protect);
+router.post('/', controller.create);
+router.get('/', controller.list);
+router.get('/unread-count', controller.unreadCount);
+router.get('/preferences', controller.getPreferences);
+router.patch('/preferences', controller.updatePreferences);
+router.patch('/read-all', controller.readAll);
+router.patch('/:id/read', controller.read);
+router.delete('/:id', controller.remove);
+module.exports = router;

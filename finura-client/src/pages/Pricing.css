@@ -1,0 +1,317 @@
+.landing-container {
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.break-words {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.pricing-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  color: #0f172a;
+  padding: 80px 0 100px;
+}
+
+.pricing-shell {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pricing-header h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  margin: 18px 0 14px;
+  color: #0f172a;
+}
+
+.pricing-header p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #475569;
+  font-size: 1rem;
+}
+
+.pricing-toggle-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 42px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.pricing-toggle-label {
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pricing-toggle-label.active {
+  color: #0f172a;
+}
+
+.pricing-toggle-button {
+  position: relative;
+  width: 58px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: #e2e8f0;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.pricing-toggle-button::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+  transition: transform 0.25s ease;
+}
+
+.pricing-toggle-button.active {
+  background: #10b981;
+}
+
+.pricing-toggle-button.active::after {
+  transform: translateX(26px);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 72px;
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 30px;
+  border: 1px solid #eaeaea;
+  border-radius: 15px;
+  background-color: white;
+  height: 100%;
+}
+
+.pricing-card.popular {
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  transform: translateY(-1px);
+}
+
+.pricing-card-header h3 {
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.pricing-card-header p {
+  color: #64748b;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.pricing-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.price-period {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.features-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 30px 0;
+  flex-grow: 1;
+}
+
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  gap: 12px;
+  margin-bottom: 15px;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.check-icon {
+  color: #20c997;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.card-btn {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.btn-solid {
+  background-color: #20c997;
+  color: white;
+  border: 2px solid #20c997;
+}
+
+.btn-solid:hover {
+  background-color: #1aa87e;
+  border-color: #1aa87e;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #0056b3;
+  border: 2px solid #0056b3;
+}
+
+.btn-outline:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.pricing-cta {
+  width: 100%;
+  margin-top: auto;
+}
+
+.pricing-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.pricing-info-card {
+  padding: 32px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.pricing-info-card h3 {
+  margin: 16px 0 12px;
+  color: #0f172a;
+}
+
+.pricing-info-card p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.pricing-banner {
+  margin-top: 72px;
+  text-align: center;
+  padding: 56px 32px;
+  border-radius: 28px;
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.16), transparent 34%), #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.pricing-banner h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin: 16px 0 12px;
+  color: #0f172a;
+}
+
+.pricing-banner p {
+  max-width: 620px;
+  margin: 0 auto 24px;
+  color: #64748b;
+}
+
+@media (max-width: 900px) {
+  .pricing-grid,
+  .pricing-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card.popular {
+    transform: none;
+  }
+}/* Features list ko center se hata kar left-align karne ke liye */
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  text-align: left !important; /* Ye center alignment ko zabardasti theek karega */
+  gap: 12px; 
+  margin-bottom: 15px;
+}
+
+.check-icon {
+  color: #20c997; 
+  font-weight: bold;
+  flex-shrink: 0; 
+}/* Heading ke theek niche thodi jagah banane ke liye */
+.pricing-header h1 {
+  margin-bottom: 20px;
+}
+
+/* Niche wale sub-text (paragraph) ke upar thodi jagah banane ke liye */
+.pricing-header p {
+  margin-top: 10px;
+  line-height: 1.6; 
+}/* Pricing cards aur Support/Security cards ke beech gap banane ke liye */
+.pricing-info-grid {
+  margin-top: 60px; 
+}/* Pricing cards aur Support/Security cards ke beech gap banane ke liye */
+.pricing-info-card {
+  margin-top: 60px; 
+}/* 🌟 PREMIUM HOVER ANIMATIONS 🌟 */
+
+/* Base class mein smooth transition */
+.pricing-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover class mein jump kam karein */
+.pricing-card:hover {
+  transform: translateY(1px)!important; /* Yahan bhi sirf -2px kar dein */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Halka sa shadow */
+}
+
+/* 2. Sabhi cards par ek jaisa Hover Effect (Upar uthna + Soft Green Shadow) */
+.pricing-card:hover, .pricing-info-card:hover {
+  transform: translateY(-2px); /* Cards thoda sa upar ki taraf uthenge */
+  
+  /* Aapke theme ka halka Green shadow jo bahut premium lagega */
+  box-shadow: 0 15px 35px rgba(32, 201, 151, 0.15); 
+  border-color: #20c997; /* Hover karne par border green ho jayega */
+  cursor: pointer;
+}
+
+
+
+

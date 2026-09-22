@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finura Dashboard</title>
+    <meta name="description" content="Secure, premium fintech dashboard overview for Finura users.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-shell">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <div class="brand-block">
+                    <div class="brand-mark">F</div>
+                    <div>
+                        <p class="eyebrow">Secure wealth workspace</p>
+                        <h1>Finura Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topbar-actions">
+                <label class="search-bar" aria-label="Search dashboard">
+                    <span>⌕</span>
+                    <input type="text" placeholder="Search account">
+                </label>
+                <button class="icon-btn" aria-label="Notifications">🔔</button>
+                <button class="btn btn-primary logout-btn" id="dashboard-logout">Logout</button>
+            </div>
+        </header>
+
+        <section class="dashboard-welcome">
+            <div>
+                <p class="eyebrow">Protected overview</p>
+                <h2 id="welcome-label">Welcome back, User!</h2>
+                <p>Track balances, growth, and recent activity with a clean, premium command center.</p>
+            </div>
+            <div class="status-pill">● All systems secure</div>
+        </section>
+
+        <section class="stats-grid" aria-label="Financial summary cards">
+            <article class="stat-card accent-green">
+                <div class="stat-card-head">
+                    <span>Total Balance</span>
+                    <span class="trend-pill positive">+4.2% this month</span>
+                </div>
+                <div class="stat-value" id="stat-balance">$0.00</div>
+                <p class="stat-meta">Available cash and holdings</p>
+            </article>
+
+            <article class="stat-card accent-blue">
+                <div class="stat-card-head">
+                    <span>Total Investments</span>
+                    <span class="trend-pill positive">+2.1% weekly</span>
+                </div>
+                <div class="stat-value" id="stat-investments">$0.00</div>
+                <p class="stat-meta">Portfolio exposure</p>
+            </article>
+
+            <article class="stat-card accent-amber">
+                <div class="stat-card-head">
+                    <span>Monthly Spend</span>
+                    <span class="trend-pill neutral">Stable</span>
+                </div>
+                <div class="stat-value" id="stat-spend">$0.00</div>
+                <p class="stat-meta">Tracked subscriptions and bills</p>
+            </article>
+        </section>
+
+        <section class="dashboard-grid">
+            <div class="panel chart-panel">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Performance</p>
+                        <h3>Investment Growth Overview</h3>
+                    </div>
+                    <span class="panel-badge">Live sample</span>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="investment-growth-chart"></canvas>
+                </div>
+
+                <div class="chart-footer">
+                    <div>
+                        <strong>+$3,850</strong>
+                        <span>Net movement this quarter</span>
+                    </div>
+                    <div>
+                        <strong>82%</strong>
+                        <span>Risk-adjusted confidence</span>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="panel transactions-panel">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Activity</p>
+                        <h3>Recent Transactions</h3>
+                    </div>
+                    <a href="#" class="panel-link">Export</a>
+                </div>
+
+                <div class="transactions-table-wrap">
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-body">
+                            <tr>
+                                <td colspan="4" class="table-empty">Loading transactions...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </aside>
+        </section>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

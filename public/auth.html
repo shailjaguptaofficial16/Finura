@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In / Register - Finura</title>
+    <meta name="description" content="Access your Finura account or create a new profile to manage your investments.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #07111f 0%, #0f172a 45%, #0f766e 100%);
+            color: var(--color-text-dark);
+            font-family: var(--font-body);
+        }
+
+        .auth-shell {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .auth-card {
+            width: min(460px, 100%);
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid rgba(226, 232, 240, 0.7);
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 24px 60px rgba(2, 6, 23, 0.35);
+            backdrop-filter: blur(8px);
+        }
+
+        .auth-card-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .auth-card-header h1 {
+            font-size: 1.8rem;
+            margin: 8px 0 6px;
+        }
+
+        .auth-card-header p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .auth-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 6px;
+            background: var(--color-bg-light);
+            border-radius: 999px;
+        }
+
+        .auth-tab {
+            border: none;
+            background: transparent;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            transition: var(--transition-normal);
+        }
+
+        .auth-tab.active {
+            background: linear-gradient(135deg, var(--color-primary), #34d399);
+            color: white;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+        }
+
+        .auth-form.hidden {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            outline: none;
+            transition: var(--transition-normal);
+            background: #f8fafc;
+        }
+
+        .form-group input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+            background: white;
+        }
+
+        .field-error {
+            color: #dc2626;
+            font-size: 0.82rem;
+            margin-top: 6px;
+            min-height: 1rem;
+        }
+
+        .form-message {
+            display: none;
+            padding: 12px 14px;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            margin-bottom: 16px;
+            border: 1px solid transparent;
+        }
+
+        .form-message.error {
+            display: block;
+            background: #fef2f2;
+            color: #b91c1c;
+            border-color: #fecaca;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #ecfdf5;
+            color: #047857;
+            border-color: #a7f3d0;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            margin-top: 8px;
+            padding: 13px 16px;
+        }
+
+        .auth-footer-text {
+            text-align: center;
+            margin-top: 18px;
+            color: var(--color-text-muted);
+            font-size: 0.93rem;
+        }
+
+        .auth-footer-text a {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-shell">
+        <div class="auth-card">
+            <div class="auth-card-header">
+                <a href="index.html" class="logo" aria-label="Finura home">
+                    <img src="logo.png" alt="Finura logo">
+                </a>
+                <h1>Secure account access</h1>
+                <p>Sign in to your dashboard or create a new Finura profile.</p>
+            </div>
+
+            <div class="auth-tabs" role="tablist" aria-label="Authentication mode">
+                <button class="auth-tab active" type="button" data-mode="login">Sign In</button>
+                <button class="auth-tab" type="button" data-mode="register">Sign Up</button>
+            </div>
+
+            <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
+
+            <form id="login-form" class="auth-form" novalidate>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" placeholder="name@finura.com" required>
+                    <p class="field-error" id="login-email-error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                    <p class="field-error" id="login-password-error"></p>
+                </div>
+                <button type="submit" class="btn btn-primary auth-submit-btn">Continue to Dashboard</button>
+            </form>
+
+            <form id="register-form" class="auth-form hidden" novalidate>
+                <div class="form-group">
+                    <label for="register-name">Name</label>
+                    <input type="text" id="register-name" name="name" placeholder="Your full name" required>
+                    <p class="field-error" id="register-name-error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="email" placeholder="name@finura.com" required>
+                    <p class="field-error" id="register-email-error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" placeholder="Create a strong password" required>
+                    <p class="field-error" id="register-password-error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" name="confirmPassword" placeholder="Re-enter your password" required>
+                    <p class="field-error" id="register-confirm-password-error"></p>
+                </div>
+                <button type="submit" class="btn btn-primary auth-submit-btn">Create Account</button>
+            </form>
+
+            <p class="auth-footer-text">
+                Your data stays protected with encrypted local session storage.
+            </p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</body>
+</html>

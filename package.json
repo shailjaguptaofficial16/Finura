@@ -1,0 +1,28 @@
+
+{
+  "name": "finura-backend",
+  "version": "1.0.0",
+  "description": "Node.js Express MongoDB Backend for Finura fintech app",
+  "main": "server.js",
+  "scripts": {
+    "build-client": "cd finura-client && npm install && npm run build",
+    "server": "node server.js",
+    "start": "node server.js",
+    "seed-demo": "cd finura-backend && npm run seed:demo",
+    "dev": "concurrently \"npm run server\" \"cd finura-client && npm run dev\"",
+    "prod": "npm run build-client && node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.5.0",
+    "mongoose": "^8.24.2"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
+  

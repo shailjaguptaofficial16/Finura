@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - Finura</title>
+    <meta name="description" content="Transparent, affordable plans matching your financial scale. Choose between Basic, Pro, and Enterprise.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="Finura home">
+                <img src="logo.png" alt="Finura logo">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Feature</a></li>
+                    <li><a href="index.html#interactive">About</a></li>
+                    <li><a href="blog.html">Resources</a></li>
+                    <li><a href="pricing.html" class="active">Pricing</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <!-- Populated dynamically by main.js -->
+                <a href="auth.html?mode=login" class="btn-text">Login</a>
+                <a href="auth.html?mode=register" class="btn btn-primary" style="padding: 8px 20px;">Create Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pricing Title -->
+    <section class="pricing-section container">
+        <div class="text-center section-header" style="margin-bottom: 40px;">
+            <span class="badge badge-primary">Pricing Plans</span>
+            <h1 style="font-size: 3rem; margin-top: 16px; margin-bottom: 16px;">Choose the right plan for your future</h1>
+            <p>Unlock the power of smart wealth management, digital banking solutions, and automated savings routines tailored for you.</p>
+        </div>
+
+        <!-- Monthly/Yearly Toggle -->
+        <div class="pricing-toggle-wrap" id="billing-toggle-wrap">
+            <span class="pricing-toggle-label active" id="monthly-label">Monthly</span>
+            <div class="toggle-switch" id="billing-toggle" role="checkbox" aria-checked="false" tabindex="0"></div>
+            <span class="pricing-toggle-label" id="yearly-label">Billed Annually <span class="badge badge-primary" style="margin-left: 8px; text-transform: none; font-size: 0.75rem; padding: 4px 10px;">Save 20%</span></span>
+        </div>
+
+        <!-- Plans Grid -->
+        <div class="grid-3" style="align-items: stretch; margin-bottom: 80px; gap: 30px;">
+            <!-- Basic Plan -->
+            <div class="card pricing-card">
+                <div class="pricing-card-header">
+                    <h3>Basic</h3>
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 16px;">Access a complete payments platform with simple pay-as-you-go pricing.</p>
+                    <div class="pricing-price">
+                        $<span id="basic-price-val">0</span><span class="price-period" id="basic-price-period">/mo</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li>Tracking up to 5 assets</li>
+                    <li>Basic analytics and portfolio insights</li>
+                    <li>Standard security settings</li>
+                    <li>Email support assistance</li>
+                </ul>
+                <a href="auth.html?mode=register" class="btn btn-outline" style="width: 100%;">Get Started</a>
+            </div>
+
+            <!-- Pro Plan (Popular) -->
+            <div class="card pricing-card popular">
+                <div class="pricing-card-header">
+                    <span class="badge badge-primary" style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background-color: var(--color-primary); color: white;">Most Popular</span>
+                    <h3>Pro</h3>
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 16px;">Advanced options for scaling portfolios and fast clearing cycles.</p>
+                    <div class="pricing-price">
+                        $<span id="pro-price-val">19</span><span class="price-period" id="pro-price-period">/mo</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li>AI auto-investing routines</li>
+                    <li>Live charts and interactive balance tracking</li>
+                    <li>Unlimited asset synchronization</li>
+                    <li>Daily interest compound updates</li>
+                    <li>Priority automated rebalancing</li>
+                </ul>
+                <a href="auth.html?mode=register" class="btn btn-primary" style="width: 100%;">Upgrade to Pro</a>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="card pricing-card">
+                <div class="pricing-card-header">
+                    <h3>Enterprise</h3>
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 16px;">Institutional-grade limits and direct custom private advisory access.</p>
+                    <div class="pricing-price">
+                        $<span id="enterprise-price-val">49</span><span class="price-period" id="enterprise-price-period">/mo</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li>Dedicated wealth manager</li>
+                    <li>Custom tax-saving advisory tools</li>
+                    <li>Premium physical metal card</li>
+                    <li>API access with higher limit ceilings</li>
+                    <li>Personal estate planning module</li>
+                    <li>24/7 dedicated support priority line</li>
+                </ul>
+                <a href="auth.html?mode=register" class="btn btn-outline" style="width: 100%;">Go Enterprise</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing FAQ / Help Panel -->
+    <section style="background-color: var(--color-bg-white); padding: 80px 0;">
+        <div class="container grid-2">
+            <div class="card" style="background-color: var(--color-bg-light); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <span class="badge badge-primary">Support</span>
+                    <h3 style="font-size: 1.8rem; margin-top: 16px; margin-bottom: 12px;">Have pricing-related questions?</h3>
+                    <p style="color: var(--color-text-muted); margin-bottom: 24px;">Our billing specialists are available to answer compliance, invoicing, and account volume structures.</p>
+                </div>
+                <a href="index.html#faq-accordion" class="btn btn-outline" style="align-self: flex-start;">Go to FAQ</a>
+            </div>
+            
+            <div class="card" style="border-left: 4px solid var(--color-primary);">
+                <div style="font-size: 2rem; margin-bottom: 16px; color: var(--color-primary);">ℹ️</div>
+                <h3 style="font-size: 1.3rem; margin-bottom: 12px;">What kind of support does Finura provide?</h3>
+                <p style="color: var(--color-text-muted); line-height: 1.7;">
+                    We provide customer support via email, and aim to reply to all requests within 48 hours. Those with paid Workspaces get priority response windows and custom developer guidance channels.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safe transactions Banner -->
+    <section class="container" style="padding: 100px 0;">
+        <div class="card text-center" style="padding: 80px; background: radial-gradient(circle at top right, var(--color-primary-light), transparent), var(--color-bg-white); overflow: hidden; position: relative;">
+            <span class="badge badge-primary">Try Us</span>
+            <h2 style="font-size: 2.6rem; margin-top: 16px; margin-bottom: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">Transaction safely and worry free!</h2>
+            <p style="color: var(--color-text-muted); max-width: 500px; margin: 0 auto 32px auto;">Life-centric financial solutions help you build your future while enjoying life, even with the smallest things that matter.</p>
+            <a href="auth.html?mode=register" class="btn btn-primary">Create Account</a>
+            
+            <!-- Graphic layout mimic -->
+            <div style="position: absolute; width: 80px; height: 80px; border-radius: 50%; border: 1px dashed var(--color-primary); top: 10%; left: 10%; opacity: 0.3; animation: spin 20s linear infinite;"></div>
+            <div style="position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 1px dashed var(--color-orange); bottom: 10%; right: 5%; opacity: 0.3; animation: spin 30s linear infinite;"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="color: var(--color-text-light); margin-bottom: 20px;">
+                    Finura <span class="logo-dot"></span>
+                </a>
+                <p style="color: var(--color-text-dim); font-size: 0.9rem; margin-top: 12px;">
+                    Securing finance solutions for modern professionals.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Atlas</a></li>
+                    <li><a href="#">Billing</a></li>
+                    <li><a href="#">Capital</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Use Cases</h4>
+                <ul>
+                    <li><a href="#">E-Commerce</a></li>
+                    <li><a href="#">SaaS</a></li>
+                    <li><a href="#">Marketplaces</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#faq-accordion">FAQ</a></li>
+                    <li><a href="#">Guides</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 Finura Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Spin animation for background shapes -->
+    <style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/pricing.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: finura-backend
+    env: node
+    rootDir: finura-backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+        sync: false
+      - key: PORT
+        value: 4000
+        sync: false
+      - key: MONGO_URI
+        value: mongodb+srv://<username>:<password>@<cluster>.mongodb.net/finura?retryWrites=true&w=majority
+        sync: false
+      - key: JWT_SECRET
+        value: replace_with_a_secure_random_64_character_string
+        sync: false
+      - key: CLIENT_URL
+        value: https://your-vercel-app.vercel.app
+        sync: false
+      - key: FRONTEND_URL
+        value: https://your-vercel-app.vercel.app
+        sync: false
+      - key: EMAIL_HOST
+        value: smtp.mailtrap.io
+        sync: false
+      - key: EMAIL_PORT
+        value: 2525
+        sync: false
+      - key: EMAIL_USERNAME
+        value: your_mailtrap_username
+        sync: false
+      - key: EMAIL_PASSWORD
+        value: your_mailtrap_password
+        sync: false
+      - key: EMAIL_FROM
+        value: no-reply@your-domain.com
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        value: ""
+        sync: false
+      - key: APP_NAME
+        value: Finura
+        sync: false
+      - key: APP_URL
+        value: https://your-vercel-app.vercel.app
+        sync: false

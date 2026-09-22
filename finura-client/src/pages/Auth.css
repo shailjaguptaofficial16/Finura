@@ -1,0 +1,219 @@
+/* Auth.css - Ultra Minimal & Compact Premium Form */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 75px);
+  background-color: #f8fafc;
+  padding: 10px; /* Padding aur kam ki */
+}
+
+.auth-card {
+  background: #ffffff;
+  padding: 25px 30px; /* Card ki andar ki height aur minimize ki */
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 360px; /* Width ko aur sleek kiya */
+  text-align: center;
+}
+
+.auth-card h2 {
+  color: #0f172a;
+  font-size: 1.5rem; /* Heading thodi choti ki */
+  margin: 0 0 5px 0;
+  font-weight: 700;
+}
+
+.auth-subtitle {
+  color: #64748b;
+  margin-bottom: 15px; /* Margin kam kiya */
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Inputs ke beech ka gap minimize kiya */
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input {
+  padding: 10px 12px; /* Box ki height kam ki */
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  outline: none;
+  background-color: #fafafa;
+}
+
+.form-group input:focus {
+  border-color: #10b981;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* Icon ke hisaab se jagah set ki */
+  box-sizing: border-box;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.password-toggle-icon:hover {
+  color: #10b981;
+}
+
+.terms-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: -2px;
+  margin-bottom: 0px;
+}
+
+.terms-group input[type="checkbox"] {
+  accent-color: #10b981;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.terms-group label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.terms-group a {
+  color: #10b981;
+  text-decoration: none;
+}
+
+.forgot-password {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #10b981;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: -6px;
+  transition: color 0.3s;
+}
+
+.auth-submit-btn {
+  background-color: #10b981;
+  color: white;
+  padding: 10px; /* Button height minimize ki */
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 2px;
+  transition: background-color 0.3s ease;
+}
+
+.auth-submit-btn:hover {
+  background-color: #059669;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 12px 0 8px 0;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.auth-divider span {
+  padding: 0 10px;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px; /* Google button height minimize ki */
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.google-btn:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.auth-toggle {
+  margin-top: 15px;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.auth-toggle span {
+  color: #10b981;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.auth-toggle span:hover {
+  text-decoration: underline;
+}
+
+.auth-logo {
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.auth-logo .finura-logo-mark {
+  width: 42px;
+  height: 42px;
+}
