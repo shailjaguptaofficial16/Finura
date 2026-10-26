@@ -10,21 +10,24 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // 2. Immediate Startup Check: Assert required environment variables exist
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
 const requiredEnvVars = ['MONGO_URI', 'JWT_SECRET'];
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && !isServerless) {
   requiredEnvVars.push('CLIENT_URL');
 }
 const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
 
 if (missingEnvVars.length > 0) {
   console.error(
-    `\n❌ FATAL STARTUP ERROR: Missing required environment variable(s): ${missingEnvVars.join(', ')}`
+    `\n❌ STARTUP WARNING: Missing required environment variable(s): ${missingEnvVars.join(', ')}`
   );
-  console.error('Please configure these in your .env file or environment prior to launch.\n');
-  process.exit(1);
+  if (!isServerless) {
+    console.error('Please configure these in your .env file or environment prior to launch.\n');
+    process.exit(1);
+  }
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && !isServerless) {
   const usesLocalDatabase = /localhost|127\.0\.0\.1/i.test(process.env.MONGO_URI);
   const hasWeakSecret = (process.env.JWT_SECRET || '').length < 32;
   if (usesLocalDatabase || hasWeakSecret) {
@@ -43,6 +46,24 @@ connectDB();
 // 5. Initialize Express application
 const app = express();
 app.disable('x-powered-by');
+
+// If essential environment variables are missing in serverless, intercept with informative 503 JSON
+if (missingEnvVars.length > 0) {
+  app.use((req, res, next) => {
+    if (req.path === '/api/health' || req.path === '/') {
+      return res.status(200).json({
+        status: 'misconfigured',
+        environment: process.env.NODE_ENV || 'production',
+        missingEnvVars,
+      });
+    }
+    return res.status(503).json({
+      success: false,
+      message: `Backend service configuration pending: Missing environment variable(s) [${missingEnvVars.join(', ')}]. Please configure them in your hosting provider settings.`,
+      code: 'CONFIG_PENDING',
+    });
+  });
+}
 
 // 6. Import Security Middlewares & Centralized Error Handlers
 const {
@@ -120,10 +141,10 @@ app.use('/api/admin', require('./routes/adminRoutes'));
 app.use(notFound);
 app.use(errorHandler);
 
-// 14. Start Server Listener (omitted during automated tests)
+// 14. Start Server Listener (omitted during automated tests and serverless environments)
 const PORT = process.env.PORT || 4000;
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !isServerless) {
   app.listen(PORT, () => {
     console.log(
       `🚀 Finura Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`

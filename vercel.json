@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://finura-k5jt.vercel.app/api/:match*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

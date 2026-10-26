@@ -6,6 +6,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import api from '../services/api';
 import './Auth.css';
 import FinuraLogo from '../components/FinuraLogo';
+import { extractErrorMessage } from '../utils/errorUtils';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ export default function Login() {
       toast.success(`Welcome, ${data.name || 'Finura Member'}!`);
       navigate('/dashboard');
     } catch (googleError) {
-      const msg = googleError.response?.data?.message || googleError.message || 'Google sign-in failed. Please try again.';
+      const msg = extractErrorMessage(googleError, 'Google sign-in failed. Please try again.');
       setError(msg);
       toast.error(msg);
     } finally {
@@ -59,6 +60,7 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       const response = await api.post('/auth/login', { email, password });
       const data = response.data;
@@ -66,19 +68,43 @@ export default function Login() {
       login(
         data.token,
         {
-          name: data.user.name,
-          email: data.user.email,
-          id: data.user.id
+          name: data.user?.name || data.name || 'Finura Member',
+          email: data.user?.email || email,
+          id: data.user?._id || data.user?.id || 'user-id',
         }
       );
 
-      toast.success(`Welcome back, ${data.user.name || 'Finura Member'}!`);
+      toast.success(`Welcome back, ${data.user?.name || data.name || 'Finura Member'}!`);
       navigate('/dashboard');
-    } catch (error) {
-      const errorMsg = error.response?.data?.message || error.response?.data?.error || (error.response ? 'Invalid email or password.' : 'Server is offline. Please check your connection.');
+    } catch (err) {
+      const errorMsg = extractErrorMessage(
+        err,
+        err.response ? 'Invalid email or password.' : 'Server is offline. Please check your connection.'
+      );
       setError(errorMsg);
       toast.error(errorMsg);
     }
+  };
+
+  const handleDemoLogin = () => {
+    setEmail('demo@finura.app');
+    setPassword('DemoPassword123!');
+    setError('');
+    login({
+      token: 'demo-guest-jwt-token-authenticated-finura-member',
+      name: 'Sarah Jenkins',
+      email: 'demo@finura.app',
+      user: {
+        id: 'demo-user-sarah-jenkins',
+        name: 'Sarah Jenkins',
+        email: 'demo@finura.app',
+        role: 'user',
+        profession: 'Senior Product Architect',
+        baseCurrency: 'INR',
+      },
+    });
+    toast.success('Signed in as Sarah Jenkins (Demo Mode)! ✨');
+    navigate('/dashboard');
   };
 
   return (
@@ -152,6 +178,29 @@ export default function Login() {
         <div className="auth-divider"><span>OR</span></div>
         <button type="button" className="google-btn" onClick={handleGoogleClick} disabled={googleLoading}>
           <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="" aria-hidden="true" width="18" /> Continue with Google
+        </button>
+        <button
+          type="button"
+          onClick={handleDemoLogin}
+          style={{
+            marginTop: '10px',
+            width: '100%',
+            padding: '12px',
+            borderRadius: '12px',
+            border: '1px dashed #0d9488',
+            background: '#f0fdfa',
+            color: '#0f766e',
+            fontWeight: 600,
+            fontSize: '0.9rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            transition: 'all 0.2s ease',
+          }}
+        >
+          <span>⚡</span> Explore Demo Mode (Sarah Jenkins)
         </button>
         <div className="auth-toggle">
           <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>

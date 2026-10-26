@@ -7,6 +7,8 @@ import api from '../services/api';
 import './Auth.css';
 import FinuraLogo from '../components/FinuraLogo';
 
+import { extractErrorMessage } from '../utils/errorUtils';
+
 const planOptions = ['Basic', 'Pro', 'Enterprise'];
 
 export default function Signup() {
@@ -39,7 +41,7 @@ export default function Signup() {
       toast.success(`Welcome, ${data.name || 'Finura Member'}!`);
       navigate('/dashboard');
     } catch (googleError) {
-      const msg = googleError.response?.data?.message || googleError.message || 'Google sign-up failed. Please try again.';
+      const msg = extractErrorMessage(googleError, 'Google sign-up failed. Please try again.');
       setError(msg);
       toast.error(msg);
     } finally {
@@ -84,7 +86,7 @@ export default function Signup() {
       toast.success(`Welcome to Finura, ${fullName || 'Member'}!`);
       navigate('/dashboard');
     } catch (err) {
-      const errorMsg = err.response?.data?.message || (err.response ? 'Error creating account.' : 'Server is offline. Please check your connection.');
+      const errorMsg = extractErrorMessage(err, err.response ? 'Error creating account.' : 'Server is offline. Please check your connection.');
       setError(errorMsg);
       toast.error(errorMsg);
     }

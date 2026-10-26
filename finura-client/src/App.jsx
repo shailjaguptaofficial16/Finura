@@ -22,19 +22,47 @@ import Legal from "./pages/Legal";
 class RouteErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, error: null };
   }
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error('Route error caught:', error, errorInfo);
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.location?.pathname !== prevProps.location?.pathname && this.state.hasError) {
+      this.setState({ hasError: false, error: null });
+    }
   }
   render() {
     if (!this.state.hasError) return this.props.children;
+    const errorMessage = typeof this.state.error?.message === 'string'
+      ? this.state.error.message
+      : 'This page could not be displayed. Return home and try again.';
     return (
       <main style={{ minHeight: "70vh", display: "grid", placeItems: "center", padding: "32px" }}>
         <section style={{ maxWidth: "480px", width: "100%", padding: "32px", borderRadius: "16px", background: "#ffffff", boxShadow: "0 12px 35px rgba(15, 23, 42, 0.12)", textAlign: "center" }}>
           <h1 style={{ marginTop: 0, color: "#0f172a" }}>Something went wrong</h1>
-          <p style={{ color: "#64748b", lineHeight: 1.6 }}>This page could not be displayed. Return home and try again.</p>
-          <button type="button" className="btn btn-primary" onClick={() => { window.location.href = "/"; }}>Back to Home</button>
+          <p style={{ color: "#64748b", lineHeight: 1.6 }}>{errorMessage}</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => this.setState({ hasError: false, error: null })}
+              style={{ padding: '10px 18px', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#f8fafc', color: '#334155', fontWeight: 600, cursor: 'pointer' }}
+            >
+              Try Again
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => { window.location.href = "/"; }}
+              style={{ padding: '10px 18px', borderRadius: '8px', border: 'none', background: '#059669', color: '#ffffff', fontWeight: 600, cursor: 'pointer' }}
+            >
+              Back to Home
+            </button>
+          </div>
         </section>
       </main>
     );
@@ -52,7 +80,7 @@ function Layout() {
       </a>
       {!isDashboard && <Navbar />}
       <div id="main-content" tabIndex={-1} style={{ outline: 'none', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <RouteErrorBoundary>
+        <RouteErrorBoundary location={location}>
           <Routes>
           {/* Public */}
           <Route path="/" element={<Home />} />

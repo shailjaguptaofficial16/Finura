@@ -19,6 +19,9 @@ export default function ErrorState({
   className = '',
 }) {
   const [retrying, setRetrying] = useState(false);
+  const safeMessage = typeof message === 'string'
+    ? message
+    : (message?.message && typeof message.message === 'string' ? message.message : String(message || 'An unexpected error occurred.'));
 
   const handleRetry = async () => {
     if (!onRetry || retrying) return;
@@ -43,7 +46,7 @@ export default function ErrorState({
           </div>
           <div className="min-w-0">
             <h4 className="text-xs sm:text-sm font-bold text-rose-900 truncate">{title}</h4>
-            <p className="text-xs text-rose-700 mt-0.5 leading-relaxed line-clamp-2">{message}</p>
+            <p className="text-xs text-rose-700 mt-0.5 leading-relaxed line-clamp-2">{safeMessage}</p>
           </div>
         </div>
         {onRetry && (
@@ -73,7 +76,7 @@ export default function ErrorState({
 
       <h3 className="text-base font-bold text-rose-900 tracking-tight font-heading">{title}</h3>
       <p className="text-xs sm:text-sm text-rose-700 max-w-md mt-1 mb-5 leading-relaxed">
-        {message}
+        {safeMessage}
       </p>
 
       {onRetry && (

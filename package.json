@@ -5,6 +5,7 @@
   "description": "Node.js Express MongoDB Backend for Finura fintech app",
   "main": "server.js",
   "scripts": {
+    "build": "npm run build-client",
     "build-client": "cd finura-client && npm install && npm run build",
     "server": "node server.js",
     "start": "node server.js",

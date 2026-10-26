@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './Auth.css';
 import api from '../services/api';
+import { extractErrorMessage } from '../utils/errorUtils';
 
 export default function ResetPassword() {
   const { token } = useParams();
@@ -24,7 +25,7 @@ export default function ResetPassword() {
       toast.success(response.data.message || 'Password reset successful. Please login.');
       setTimeout(() => navigate('/login'), 3000);
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Failed to reset password. Token may be invalid or expired.');
+      toast.error(extractErrorMessage(err, 'Failed to reset password. Token may be invalid or expired.'));
     } finally {
       setLoading(false);
     }

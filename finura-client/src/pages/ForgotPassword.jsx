@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './Auth.css';
 import api from '../services/api';
+import { extractErrorMessage } from '../utils/errorUtils';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ export default function ForgotPassword() {
       toast.success(response.data.message || 'Reset link sent to your email');
       setTimeout(() => navigate('/login'), 3000);
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Failed to send reset link');
+      toast.error(extractErrorMessage(err, 'Failed to send reset link'));
     } finally {
       setLoading(false);
     }
