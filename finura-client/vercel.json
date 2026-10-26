@@ -5,10 +5,8 @@
       "destination": "https://finura-k5jt.vercel.app/api/:path*"
     },
     {
-      "source": "/((?!assets/|_next/|.*\\.).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  ]
 }
